@@ -1,4 +1,4 @@
-import * as qiniu from 'qiniu-js'
+//import * as qiniu from 'qiniu-js'
 
 
 //Leancloud 数据库
@@ -36,4 +36,5 @@ song.save({
 */
 console.log(qiniu);
 console.log(window.AV);
+
 
