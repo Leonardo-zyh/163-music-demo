@@ -5,16 +5,17 @@
         <div id="uploadButton" class="clickable">
         <span>点击或拖曳文件</span>
         <p>文件大小不能超过 40MB </p>
-        <div id="uploadStatus"></div>
-        <div id="uploadDetail"></div>
+        <div id="uploadStatus" class="uploadStatus"></div>
         </div>
         `,
         render(data){
             $(this.el).html(this.template)
         }
     }
-    let model = {}
-    let container = {
+    let model = {
+        
+    }
+    let controller = {
         init(view,model){
             this.view=view
             this.model=model
@@ -43,7 +44,7 @@
                     },
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
-                        uploadStatus.textContent = '上传中'
+                        uploadStatus.textContent = '上传中...'
                     },
                     'FileUploaded': function (up, file, info) {
                         //uploadStatus.textContent = '上传完毕'
@@ -59,9 +60,16 @@
                         var response = JSON.parse(info.response);
                         var sourceLink = domain + encodeURIComponent(response.key); //获取上传成功后的文件的Url
                         //console.log(sourceLink);
-                        uploadStatus.textContent = sourceLink
-                        uploadDetail.textContent = response.key
+                        //uploadStatus.textContent = sourceLink
+                        //uploadDetail.textContent = response.key
+                        uploadStatus.textContent = ''
+                        window.eventHub.emit('upload', {    //eventHub发布
+                            url: sourceLink,
+                            name: response.key
+                          })
+                        
                     },
+                    
                     'Error': function (up, err, errTip) {
                         //上传出错时,处理相关的事情
                     },
@@ -72,5 +80,5 @@
             });
         }
     }
-    container.init(view,model)
+    controller.init(view,model)
 }

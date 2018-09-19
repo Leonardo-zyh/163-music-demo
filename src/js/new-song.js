@@ -9,12 +9,19 @@
         }
     }
     let model = {}
-    let container = {
+    let controller = {
         init(view,model){
             this.view=view
             this.model=model
-            this.view.render(this.model.render)
+            this.view.render(this.model.data)
+            this.active()
+            window.eventHub.on('upload',(data)=>{                            
+                this.active()
+            })
+        },
+        active(){
+            $(this.view.el).addClass('active')
         }
     }
-    container.init(view,model)
+    controller.init(view,model)
 }
