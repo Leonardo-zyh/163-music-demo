@@ -11,7 +11,7 @@
                 </div>
                 <div class="row">
                     <b for="">歌手：</b>
-                    <input name="singer" type="text">
+                    <input name="singer" type="text" value="__singer__">
                 </div>
                 <div class="row">
                     <b for="">外链：</b>
@@ -74,6 +74,11 @@
             //$(this.view.el).hide()
             window.eventHub.on('upload', (data) => {
                 $(this.view.el).show()
+                this.model.data = data
+                this.view.render(this.model.data)
+            })
+            window.eventHub.on('select',(data)=>{
+                //console.log(data);
                 this.model.data = data
                 this.view.render(this.model.data)
             })
