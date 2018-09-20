@@ -16,10 +16,10 @@
                 $el.find('ul').append(domLi)
             })
         },
-        clearActive() {
+        clearActive() { //去active
             $(this.el).find('.active').removeClass('active')
         },
-        activeItem(li){
+        activeItem(li){ 
             let $li = $(li)
             $li.addClass('active')
                 .siblings('.active').removeClass('active')
@@ -29,7 +29,7 @@
         data: {
             songs: []
         },
-        find() {
+        find() {    //获取数据库歌曲信息
             let query = new AV.Query('Song')
             return query.find().then((songs)=> {
              this.data.songs = songs.map((song)=>{
@@ -53,20 +53,20 @@
                 this.view.render(this.model.data)
             })
         },
-        bindEvents(){
+        bindEvents(){   //选取歌曲，获取信息
             $(this.view.el).on('click','li',(e)=>{
-                this.view.activeItem(e.currentTarget)
+                this.view.activeItem(e.currentTarget)//获取点击选中的id值
                 let songId = e.currentTarget.getAttribute('data-song-id')
                 let data
                 let songs = this.model.data.songs
                 for(let i=0;i<songs.length;i++){ //遍历data的数据获取内容
                     if(songs[i].id===songId){
-                        data = songs[i]
+                        data = songs[i]         //data就是点击歌曲信息
                         break
                     }
                 }   
                 
-                    window.eventHub.emit('select',JSON.parse(JSON.stringify(data)))
+                window.eventHub.emit('select',JSON.parse(JSON.stringify(data)))
             })
 
         },

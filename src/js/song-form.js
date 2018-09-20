@@ -81,22 +81,7 @@
             this.view.init()
             this.view.render(this.model.data)
             this.bindEvents()
-            $('.uploadHint').hide()            
-            window.eventHub.on('upload', (data) => {
-                $(this.view.el).show()
-                $('.uploadHint').show()
-                this.model.data = data
-                this.view.render(this.model.data)
-            })
-            window.eventHub.on('select',(data)=>{
-                console.log('1');
-                this.model.data = data 
-                this.view.render(this.model.data)
-                $(this.view.el).show()
-                $('#uploadComplete').hide()                
-                $('.uploadHint').hide()
-                                               
-            })
+            this.bindEventHub()                                       
             
         },
         update(){//修改更新            
@@ -114,8 +99,26 @@
             })
             
         },
+        bindEventHub(){
+            window.eventHub.on('upload', (data) => {
+                $(this.view.el).show()
+                $('.uploadHint').show()
+                this.model.data = data
+                this.view.render(this.model.data)
+            })
+            window.eventHub.on('select',(data)=>{
+                console.log('1');
+                this.model.data = data 
+                this.view.render(this.model.data)
+                $(this.view.el).show()
+                $('#uploadComplete').hide()                
+                $('.uploadHint').hide()
+                                               
+            })
+        },
 
         bindEvents() {
+            $('.uploadHint').hide()
             this.view.$el.on('submit', 'form', (e) => {
                 e.preventDefault()
                 if(this.model.data.id){
@@ -133,9 +136,11 @@
                         let object = JSON.parse(string)
                         window.eventHub.emit('create',object)                        
                     })
-                window.location.reload()
-                //$(this.view.el).hide()
-                //$('#uploadComplete').show()
+                    $(".uploadHint").load(location.href+".uploadHint")
+                    $("#mainWrapper").load(location.href+"#mainWrapper");                    
+                    //window.location.reload()
+                    //$(this.view.el).hide()
+                    //$('#uploadComplete').show()
                 
                 }
 
