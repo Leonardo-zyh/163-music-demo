@@ -27,6 +27,10 @@
             this.view.render(this.model.data)
             this.initQiniu()
             $(this.view.el).hide()
+            window.eventHub.on('clickUpload', (data) => {
+                $('#mainWrapper').hide()
+                $(this.view.el).show()                
+            })
             window.eventHub.on('upload', (data) => {
                 $(this.view.el).hide()
             })
@@ -53,7 +57,8 @@
                     },
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
-                        uploadStatus.textContent = '上传中...'
+                        $('.clicktext').hide()
+                        uploadStatus.textContent = '上传中,请稍等...'
                     },
                     'FileUploaded': function (up, file, info) {
                         //uploadStatus.textContent = '上传完毕'

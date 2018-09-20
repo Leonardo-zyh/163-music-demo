@@ -71,17 +71,21 @@
             this.view.init()
             this.view.render(this.model.data)
             this.bindEvents()
-            //$(this.view.el).hide()
+            $('.uploadHint').hide()            
             window.eventHub.on('upload', (data) => {
                 $(this.view.el).show()
+                $('.uploadHint').show()
                 this.model.data = data
                 this.view.render(this.model.data)
             })
             window.eventHub.on('select',(data)=>{
                 //console.log(data);
                 this.model.data = data
-                this.view.render(this.model.data)
+                this.view.render(this.model.data)                
+                $('#uploadComplete').hide()
+                $(this.view.el).show()                                
             })
+            
         },
         bindEvents() {
             this.view.$el.on('submit', 'form', (e) => {
@@ -98,8 +102,9 @@
                         let object = JSON.parse(string)
                         window.eventHub.emit('create',object)                        
                     })
-                $(this.view.el).hide()
-                $('#uploadComplete').show()
+                window.location.reload()
+                //$(this.view.el).hide()
+                //$('#uploadComplete').show()
                 
             })
         }

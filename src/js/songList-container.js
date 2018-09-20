@@ -79,6 +79,9 @@
                 this.view.render(this.model.data)
                 console.log(this.model.data);
             })
+            window.eventHub.on('clickUpload', (data) => {
+                this.view.clearActive()
+            })
         }
     }
     controller.init(view, model)

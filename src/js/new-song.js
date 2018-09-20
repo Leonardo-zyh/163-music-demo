@@ -2,7 +2,7 @@
     let view = {
         el:'#newSong',
         template:`
-        <span>新建歌曲<span>
+        <span id="uploadSong">新建歌曲<span>
         `,
         render(data){
             $(this.el).html(this.template)
@@ -15,11 +15,21 @@
             this.model=model
             this.view.render(this.model.data)
             this.active()
+            this.bindEvents()
+            this.bindEventHub()
+        },
+        bindEventHub(){            
             window.eventHub.on('upload',(data)=>{                            
                 this.active()
             })
             window.eventHub.on('select',(data)=>{
                 this.deactive()
+            })        
+        },
+        bindEvents(){
+            $('#newSong').on('click',(e)=>{
+                window.eventHub.emit('clickUpload')
+                this.active()
             })
         },
         active(){
