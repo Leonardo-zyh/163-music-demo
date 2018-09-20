@@ -1,4 +1,4 @@
-window.eventHub = {   //订阅发布模式模块
+window.eventHub = {   //事件中心，订阅发布模式
     events: {
 
     },//hash

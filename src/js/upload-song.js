@@ -2,11 +2,16 @@
     let view = {
         el: '#uploadComplete',
         template: `
-        <div id="uploadButton" class="clickable">
-        <span>点击或拖曳文件</span>
-        <p>文件大小不能超过 40MB </p>
+        <div id="uploadWrapper" class="uploadWrapper">
+        <div class="clicktext">
+        <b>请选择文件或将文件拖拽至此上传</b>
+        <p>文件大小不能超过 20MB </p>
         <div id="uploadStatus" class="uploadStatus"></div>
         </div>
+        <div id="uploadButton" class="clickable">选择文件<div>
+        </div>
+       
+
         `,
         render(data){
             $(this.el).html(this.template)
@@ -21,6 +26,10 @@
             this.model=model
             this.view.render(this.model.data)
             this.initQiniu()
+            $(this.view.el).hide()
+            window.eventHub.on('upload', (data) => {
+                $(this.view.el).hide()
+            })
         },
         initQiniu(){
             var uploader = Qiniu.uploader({
@@ -31,7 +40,7 @@
                 get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
                 max_file_size: '20mb',           //最大文件体积限制
                 dragdrop: true,                   //开启可拖曳上传
-                drop_element: 'uploadComplete',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                drop_element: 'uploadWrapper',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
                 auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
                 init: {
                     'FilesAdded': function (up, files) {
@@ -63,7 +72,8 @@
                         //uploadStatus.textContent = sourceLink
                         //uploadDetail.textContent = response.key
                         uploadStatus.textContent = ''
-                        window.eventHub.emit('upload', {    //eventHub发布
+
+                        window.eventHub.emit('upload', {//eventHub事件中心发布
                             url: sourceLink,
                             name: response.key
                           })
