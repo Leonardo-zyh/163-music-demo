@@ -61,7 +61,17 @@
                 })
                 //console.log(newSong);
             }, (error) => { console.error('error') })
-        }
+        },
+        update(data){//修改更新            
+            var song = AV.Object.createWithoutData('Song', this.data.id);
+            // 修改属性
+            song.set('name', data.name);
+            song.set('singer', data.singer);
+            song.set('url', data.url);
+            // 保存到云端
+            return song.save();
+            
+        },
     }
 
     let controller = {
@@ -79,18 +89,39 @@
                 this.view.render(this.model.data)
             })
             window.eventHub.on('select',(data)=>{
-                //console.log(data);
-                this.model.data = data
-                this.view.render(this.model.data)                
-                $('#uploadComplete').hide()
-                $(this.view.el).show()                                
+                console.log('1');
+                this.model.data = data 
+                this.view.render(this.model.data)
+                $(this.view.el).show()
+                $('#uploadComplete').hide()                
+                $('.uploadHint').hide()
+                                               
             })
             
         },
+        update(){//修改更新            
+            let needs = 'name singer url'.split(' ')
+            let data = {}
+            needs.map((string) => {
+                data[string] = this.view.$el.find(`[name="${string}"]`).val()
+            })
+            //this.model.create(data)
+            this.model.update(data)
+            .then(()=>{         
+                $(".songList").load(location.href+".songList");       
+                //window.location.reload()
+                //alert('更新数据成功')
+            })
+            
+        },
+
         bindEvents() {
             this.view.$el.on('submit', 'form', (e) => {
                 e.preventDefault()
-                let needs = 'name singer url'.split(' ')
+                if(this.model.data.id){
+                    this.update()
+                }else{
+                    let needs = 'name singer url'.split(' ')
                 let data = {}
                 needs.map((string) => {
                     data[string] = this.view.$el.find(`[name="${string}"]`).val()
@@ -105,6 +136,9 @@
                 window.location.reload()
                 //$(this.view.el).hide()
                 //$('#uploadComplete').show()
+                
+                }
+
                 
             })
         }

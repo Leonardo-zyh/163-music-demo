@@ -14,7 +14,7 @@
             this.view=view
             this.model=model
             this.view.render(this.model.data)
-            this.active()
+            //this.active()
             this.bindEvents()
             this.bindEventHub()
         },

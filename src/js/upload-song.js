@@ -4,8 +4,10 @@
         template: `
         <div id="uploadWrapper" class="uploadWrapper">
         <div class="clicktext">
+        <div class="textWeapper">
         <b>请选择文件或将文件拖拽至此上传</b>
         <p>文件大小不能超过 20MB </p>
+        </div>
         <div id="uploadStatus" class="uploadStatus"></div>
         </div>
         <div id="uploadButton" class="clickable">选择文件<div>
@@ -57,7 +59,7 @@
                     },
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
-                        $('.clicktext').hide()
+                        $('.textWeapper').hide()
                         uploadStatus.textContent = '上传中,请稍等...'
                     },
                     'FileUploaded': function (up, file, info) {
