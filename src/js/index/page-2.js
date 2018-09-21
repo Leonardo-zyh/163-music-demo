@@ -1,4 +1,4 @@
-{
+{   
     let view = {
         el:'.page-2',
         init(){
