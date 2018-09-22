@@ -1,35 +1,56 @@
 {
     let view = {
         el:'#app',
-        template:`
-        <audio autoplay src={{url}} ></audio>
-        <div>
-        <button class="play">play</button>
-        <button class="pause">pause</button> 
-        </div>
-        `,
+        template:`       
+        .page::after{
+            background: transparent url({__cover__}) no-repeat center; background-size: cover;
+        }`
+        ,
         render(data){
-            $(this.el).html(this.template.replace('{{url}}',data.url))            
+            let {song} = data
+            let {lyrics,name,singer}= song
+            $('style').html(this.template.replace('{__cover__}',song.cover))
+            $(this.el).find('img.cover').attr('src',song.cover)
+            $(this.el).find('h1').append(name)
+            $(this.el).find('h2').append(' - '+ singer)
+            //split空格，遍历数组，每行创建p放歌词
+            lyrics.split('\n').map((string)=>{
+                let p = document.createElement('p')
+                p.textContent = string
+                $(this.el).find('.lyric >.lines').append(p)
+            })
+            //$(this.el).css('background-image',`url(${song.cover})`) 
+            console.log(lyrics);
+                                            
         },
         play(){
-            let audio = $(this.el).find('audio')[0]
-            audio.play()
+            
+            $(this.el).find('.disc-container').addClass('playing')
+            $(this.el).find('audio')[0].play()
         },
         pause(){
-            let audio = $(this.el).find('audio')[0]
-            audio.pause()
+         
+            $(this.el).find('.disc-container').removeClass('playing')
+            $(this.el).find('audio')[0].pause()
         }
 
     }
     let model = {
         data: {
-            id: '', name: '', singer: '', url: '',
+           song:{
+            id: '', 
+            name: '',
+            singer: '',
+            url: '',
+            cover:'',
+           },
+        status:'',
         },
        
         get(id) {
             let query = new AV.Query('Song');
             return query.get(id).then((song) => {
-                Object.assign(this.data, { id: song.id, ...song.attributes })
+                Object.assign(this.data.song, { id: song.id, ...song.attributes })
                 return song
             })
         }
@@ -41,17 +62,25 @@
             this.model = model
             let id = this.getSongId()   
             this.model.get(id).then(() => {
-           //console.log(this.model.data); 
            this.view.render(this.model.data)            
             })
+            console.log(this.model.data)
+            
             this.bindEvents()
+            console.log(this.model.status);
+            
+            
         },
         bindEvents(){
-            $(this.view.el).on('click','.play',()=>{          
-                this.view.play()
-            })
-            $(this.view.el).on('click','.pause',()=>{
-                this.view.pause()
+            $(this.view.el).on('click',()=>{          
+                if(this.model.status ==='playing'){
+                    this.view.pause()
+                    this.model.status = 'paused'                    
+                }else{
+                    this.view.play()
+                    this.model.status = 'playing'
+                }
+                
             })
         },                       
         getSongId() {//通过解析查询参数获取id
