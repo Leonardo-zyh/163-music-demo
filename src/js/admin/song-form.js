@@ -21,6 +21,10 @@
                     <b for="">封面：</b>
                     <input autocomplete="off" name="cover" type="text" value="__cover__">
                 </div>
+                <div class="row">
+                    <b for="">歌词：</b>
+                    <textarea cols=30 row=10 name="lyrics" " value="">__lyrics__</textarea>
+                </div>
                 <div class="row actions">
                         <button type="submit">确定</button>
                     </div>
@@ -29,7 +33,7 @@
         <div>
             `,
         render(data = {}) {
-            let placeholders = ['name', 'url','singer','id','cover']
+            let placeholders = ['name', 'url','singer','id','cover','lyrics']
             let html = this.template
             placeholders.map((string) => {
                 html = html.replace(`__${string}__`, data[string] || '')
@@ -47,7 +51,7 @@
 
     let model = {
         data: {
-            name: '', singer: '', url: '', id: '', cover:''
+            name: '', singer: '', url: '', id: '', cover:'',lyrics:''
         },
         create(data) {
             var Song = AV.Object.extend('Song');
@@ -56,6 +60,7 @@
             song.set('singer', data.singer)
             song.set('url', data.url)
             song.set('cover', data.cover)
+            song.set('lyrics', data.lyrics)
             return song.save().then((newSong) => {
                 let {id,attributes} = newSong
                 Object.assign(this.data,{
@@ -74,6 +79,7 @@
             song.set('singer', data.singer);
             song.set('url', data.url);
             song.set('cover', data.cover);
+            song.set('lyrics', data.lyrics)
             // 保存到云端
             return song.save();
             
@@ -93,7 +99,7 @@
             
         },
         update(){//修改更新            
-            let needs = 'name singer url cover'.split(' ')
+            let needs = 'name singer url cover lyrics'.split(' ')
             let data = {}
             needs.map((string) => {
                 data[string] = this.view.$el.find(`[name="${string}"]`).val()
@@ -133,7 +139,7 @@
                     this.update()
                     $("#songList-container").load(location.href+"#songList-container");
                 }else{
-                    let needs = 'name singer url cover'.split(' ')
+                    let needs = 'name singer url cover lyrics'.split(' ')
                 let data = {}
                 needs.map((string) => {
                     data[string] = this.view.$el.find(`[name="${string}"]`).val()
