@@ -7,15 +7,19 @@
             <form class="form">               
                 <div class="row">
                     <b for="">歌名：</b>
-                    <input name="name" type="text" value="__name__">
+                    <input autocomplete="off" name="name" type="text" value="__name__">
                 </div>
                 <div class="row">
                     <b for="">歌手：</b>
-                    <input name="singer" type="text" value="__singer__">
+                    <input autocomplete="off" name="singer" type="text" value="__singer__">
                 </div>
                 <div class="row">
                     <b for="">外链：</b>
-                    <input name="url" type="text" value="__url__">
+                    <input autocomplete="off" name="url" type="text" value="__url__">
+                </div>
+                <div class="row">
+                    <b for="">封面：</b>
+                    <input autocomplete="off" name="cover" type="text" value="__cover__">
                 </div>
                 <div class="row actions">
                         <button type="submit">确定</button>
@@ -25,7 +29,7 @@
         <div>
             `,
         render(data = {}) {
-            let placeholders = ['name', 'url','singer','id']
+            let placeholders = ['name', 'url','singer','id','cover']
             let html = this.template
             placeholders.map((string) => {
                 html = html.replace(`__${string}__`, data[string] || '')
@@ -43,7 +47,7 @@
 
     let model = {
         data: {
-            name: '', singer: '', url: '', id: ''
+            name: '', singer: '', url: '', id: '', cover:''
         },
         create(data) {
             var Song = AV.Object.extend('Song');
@@ -51,6 +55,7 @@
             song.set('name', data.name)
             song.set('singer', data.singer)
             song.set('url', data.url)
+            song.set('cover', data.cover)
             return song.save().then((newSong) => {
                 let {id,attributes} = newSong
                 Object.assign(this.data,{
@@ -68,6 +73,7 @@
             song.set('name', data.name);
             song.set('singer', data.singer);
             song.set('url', data.url);
+            song.set('cover', data.cover);
             // 保存到云端
             return song.save();
             
@@ -81,11 +87,13 @@
             this.view.init()
             this.view.render(this.model.data)
             this.bindEvents()
-            this.bindEventHub()                                       
+            this.bindEventHub() 
+            console.log(this.model.data);
+                                                  
             
         },
         update(){//修改更新            
-            let needs = 'name singer url'.split(' ')
+            let needs = 'name singer url cover'.split(' ')
             let data = {}
             needs.map((string) => {
                 data[string] = this.view.$el.find(`[name="${string}"]`).val()
@@ -123,8 +131,9 @@
                 e.preventDefault()
                 if(this.model.data.id){
                     this.update()
+                    $("#songList-container").load(location.href+"#songList-container");
                 }else{
-                    let needs = 'name singer url'.split(' ')
+                    let needs = 'name singer url cover'.split(' ')
                 let data = {}
                 needs.map((string) => {
                     data[string] = this.view.$el.find(`[name="${string}"]`).val()
@@ -137,7 +146,7 @@
                         window.eventHub.emit('create',object)                        
                     })
                     $(".uploadHint").load(location.href+".uploadHint")
-                    $("#mainWrapper").load(location.href+"#mainWrapper");                    
+                    //$("#mainWrapper").load(location.href+"#mainWrapper");                    
                     //window.location.reload()
                     //$(this.view.el).hide()
                     //$('#uploadComplete').show()

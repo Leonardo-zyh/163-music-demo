@@ -41,7 +41,7 @@
             this.model = model
             let id = this.getSongId()   
             this.model.get(id).then(() => {
-           //     console.log(this.model.data); 
+           //console.log(this.model.data); 
            this.view.render(this.model.data)            
             })
             this.bindEvents()
@@ -54,7 +54,7 @@
                 this.view.pause()
             })
         },                       
-        getSongId() {
+        getSongId() {//通过解析查询参数获取id
             let search = window.location.search
             if (search.indexOf('?') === 0) {
                 search = search.substring(1)

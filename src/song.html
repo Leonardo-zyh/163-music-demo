@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/song.css">
+    <title>music-page</title>
+</head>
+<body>
+    <div class="page" id="app">
+        <audio src="#"></audio>
+        <div class="disc-container">
+            <img class="pointer" src="./img/needle-ip6.png " alt="">
+            <div class="disc">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-play">
+                        <use xlink:href="#icon-play"></use>
+                    </svg>
+                    <svg class="icon icon-pause">
+                        <use xlink:href="#icon-pause"></use>
+                    </svg>
+                </div>
+                <img class="ring" src="./img/disc-ip6.png" alt="">
+                <img class="light" src="./img/disc_light-ip6.png" alt="">
+                <img src="./img/105553116278617.jpg" alt="" class="cover">
+            </div>
+        </div>
+        <div class="song-description"></div>
+        <h1></h1>
+        <div class="lyric">
+            <div class="line">
+
+            </div>
+        </div>
+        <div class="links">
+            <a href="#">打开</a>
+            <a class="download" href="#">下载</a>
+        </div>
+    </div>
+   
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+    <script src="./js/admin/av.js"></script>
+    <script src="./js/song/song.js"></script>
+</body>
+</html>

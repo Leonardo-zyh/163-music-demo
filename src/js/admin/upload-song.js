@@ -58,12 +58,12 @@
                     },
                     'BeforeUpload':  (up, file)=> {
                         // 每个文件上传前,处理相关的事情
-                        window.eventHub.emit('beforeUpload')
+                       /* window.eventHub.emit('beforeUpload')
                         if(this.model.data.status==='closed'){
                             return false
                         }else{
                             this.model.data.status = 'closed'
-                        }
+                        }*/
                     },
                     'UploadProgress':  (up, file)=> {
                         // 每个文件上传时,处理相关的事情
