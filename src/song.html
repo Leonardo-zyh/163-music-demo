@@ -6,42 +6,45 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/song.css">
     <title>music-page</title>
+    <style></style>
 </head>
 <body>
     <div class="page" id="app">
-        <audio src="#"></audio>
-        <div class="disc-container">
+        
+        <audio class="audio" src=""></audio>
+        <div class="disc-container paused">
             <img class="pointer" src="./img/needle-ip6.png " alt="">
             <div class="disc">
-                <div class="icon-wrapper">
-                    <svg class="icon icon-play">
-                        <use xlink:href="#icon-play"></use>
-                    </svg>
+                <div class="icon-wrapper">                    
                     <svg class="icon icon-pause">
                         <use xlink:href="#icon-pause"></use>
                     </svg>
                 </div>
                 <img class="ring" src="./img/disc-ip6.png" alt="">
-                <img class="light" src="./img/disc_light-ip6.png" alt="">
-                <img src="./img/105553116278617.jpg" alt="" class="cover">
+                <img class="light" src="./img/disc_light-ip6.png" alt="">                
+                <img src="" alt="" class="cover">                
             </div>
         </div>
-        <div class="song-description"></div>
-        <h1></h1>
+        <div class="song-description">
+        <span> <h1></h1>
+            <h2></h2> </span>
         <div class="lyric">
-            <div class="line">
-
+            <div class="lines">
+                
             </div>
-        </div>
-        <div class="links">
-            <a href="#">打开</a>
-            <a class="download" href="#">下载</a>
         </div>
     </div>
+       
+    
+    </div>
+    <div class="links">
+        <a href="#">打开</a>
+        <a class="download" href="#">下载</a>
+    </div>
    
-
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+    <script src="//at.alicdn.com/t/font_846060_ezmk5z5682l.js"></script>
+    <script src="./js/song/jquery.min.js"></script>
+    <script src="./js/song/av-min.js"></script>
     <script src="./js/admin/av.js"></script>
     <script src="./js/song/song.js"></script>
 </body>
