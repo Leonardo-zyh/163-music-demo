@@ -11,6 +11,7 @@ ul,ol{list-style: none;}
 }
 
 
+
 .page{
     height: 100vh;
     display: flex;
@@ -35,9 +36,9 @@ ul,ol{list-style: none;}
     left: 0;
     height: 100%;
     width: 100%;
-    background: transparent url(../img/u=4005595004\,2416271964&fm=26&gp=0.jpg) no-repeat center;
-    background-size : cover;
-    filter: blur(15px);
+    background: transparent url() no-repeat center;
+    background-size :cover;
+    filter: blur(10px);
     z-index: -3;
 }
 
@@ -45,7 +46,7 @@ ul,ol{list-style: none;}
     position: relative;
 }
 .disc-container .icon-wrapper{
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,13 +63,17 @@ ul,ol{list-style: none;}
     
 }
 .disc-container .pointer{
-    width: 25vw; position: absolute; left: 46vw; 
+    width: 25vw;
+    position: absolute;
+    left: 46vw;
+        
 }
-.disc-container.playing .pointer{
-    transition: transform 1s;
+.disc-container.playing .pointer{ 
+    transition: 1s;   
     transform-origin:0% 0%;
-    transform: rotate(-10deg);
+    /*transform: rotate(-10deg)*/
 }
+
 .disc-container .disc{
     display: flex; justify-content: center; align-items: center; margin-top: 18vw;
 }
@@ -116,7 +121,7 @@ ul,ol{list-style: none;}
 }
 .song-description h2{
     font-size: 16px;
-    color: #999;
+    color: rgb(189, 189, 189);
     font-weight: normal
 }
 .song-description p{
@@ -151,7 +156,7 @@ ul,ol{list-style: none;}
 	justify-content: center;
 	align-items: center;
     color: #D43B32;
-    z-index: -1;
+    z-index: 2;
 }
  .links > a{
     font-size: 18px;

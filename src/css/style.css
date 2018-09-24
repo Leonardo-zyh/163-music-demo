@@ -142,33 +142,36 @@ body{
   section.songs > .list {
     margin-top: 18px;
   }
-  section.songs > .list > li > h3{
+  section.songs > .list > .songs-row {
+    display: inline-block;
+  }
+  section.songs > .list > .songs-row > h3{
     font-size: 17px;
   }
-  section.songs > .list > li > p{
+  section.songs > .list > .songs-row > p{
     font-size: 12px;
     color: #888;
   }
-  section.songs > .list > li{
+  section.songs > .list > .songs-row{
     position: relative;
     margin-left: 10px;
     padding-bottom: 6px;
     padding-top: 5px;
     border-bottom: 1px solid #E2E2E3;
   }
-  section.songs > .list .playButton{
+  section.songs > .list .songs-row .playButton{
     position: absolute;
     right:8px;
     top: 50%;
     transform: translateY(-50%);
   }
-  section.songs > .list .icon-play{
+  section.songs > .list .songs-row .icon-play{
     width: 22px;
     height: 22px;
     vertical-align: middle;
     fill: #AAA;
   }
-  section.songs > .list .icon-sq{
+  section.songs > .list .songs-row .icon-sq{
     fill: #FE672E;
   }
   section.art{
@@ -198,3 +201,87 @@ body{
     color: #888;
     transform: scale(.75);
   }
+
+  /*page-2*/
+
+.hotop{
+  background: url(../img/hot_music_bg_2x.jpg) no-repeat;
+  background-size: cover;
+  height: 22vh;
+}
+.hotopct{
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+
+}
+.hoticon {
+  width: 142px;
+  height: 67px;
+  margin-left: 24px;
+  margin-top: 30px;
+
+}
+.hottime{
+  margin-top: 0px;
+  margin-left: 24px;
+  color: hsla(0,0%,100%,.8);
+  font-size: 12px;
+}
+.song-number{
+  width: 28px;
+  height: 54px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-2   .song-row{
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  -webkit-tap-highlight-color:transparent;
+}
+.page-2  .song-row .song-number{
+  align-items: center;
+  width: 28px;
+  font-size: 17px;
+  color: #999;
+}
+.page-2  .song-row .song-number.three{
+  color: #df3436;
+}
+
+.page-2  .song-row .play-sgchfi{
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+}
+.page-2  .song-row span > h3{
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: normal;
+    margin-top: 10px;
+    
+}
+.page-2  .song-row span>p{
+  font-size: 13px;
+    color: #888;
+}
+.page-2  .song-row span>p .icon-sq{
+  fill: #FE672E;
+}
+.page-2  .song-row .playButton{
+  position: absolute;
+  right:8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.page-2 .song-row .playButton .icon-play{
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  fill: #AAA;
+}
+
