@@ -10,7 +10,7 @@
             let {song} = data
             let {lyrics,name,singer}= song
             $('style').html(this.template.replace('{__cover__}',song.cover))
-            $(this.el).find('img.cover').attr('src',song.cover)
+            $(this.el).find('.cover').attr('src',song.cover)
             $(this.el).find('.song-description h1').text(name)
             $(this.el).find('.song-description h2').text(' - '+ singer)
             if($(this.el).find('audio').attr('src') !== song.url){
@@ -37,7 +37,7 @@
                 $(this.el).find('.lyric >.lines').append(p)
             })
             //$(this.el).css('background-image',`url(${song.cover})`) 
-            console.log(lyrics);
+           // console.log(lyrics);
                                             
         },
         showLyric(time){
@@ -67,12 +67,12 @@
           },
         play(){
             
-            $(this.el).find('.disc-container').addClass('playing')
+            $(this.el).find('.disc-container').addClass('playing').removeClass('.paused')
             $(this.el).find('audio')[0].play()
         },
         pause(){
          
-            $(this.el).find('.disc-container').removeClass('playing')
+            $(this.el).find('.disc-container').removeClass('playing').addClass('paused')
             $(this.el).find('audio')[0].pause()
         }
 
@@ -86,14 +86,14 @@
             url: '',
             cover:'',
            },
-        status:'playing',
+        status:'',
         },
        
         get(id) {
             let query = new AV.Query('Song');
             return query.get(id).then((song) => {
                 Object.assign(this.data.song, { id: song.id, ...song.attributes })
-                return song
+                return song  
             })
         }
 
@@ -106,12 +106,8 @@
             this.model.get(id).then(() => {
            this.view.render(this.model.data)            
             })
-            console.log(this.model.data)
-            
-            this.bindEvents()
-            console.log(this.model.status);
-            
-            
+            console.log(this.model.data)            
+            this.bindEvents()              
         },
         bindEvents(){
             $(this.view.el).on('click',()=>{          
@@ -121,8 +117,7 @@
                 }else{
                     this.view.play()
                     this.model.status = 'playing'
-                }
-                
+                }                
             })
             window.eventHub.on('songEnd', ()=>{
                 this.model.data.status = 'paused'
