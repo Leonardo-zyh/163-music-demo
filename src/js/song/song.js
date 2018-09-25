@@ -10,7 +10,8 @@
             let {song} = data
             let {lyrics,name,singer}= song
             $('style').html(this.template.replace('{__cover__}',song.cover))
-            $(this.el).find('.cover').attr('src',song.cover)
+            $('.cover').attr('src',song.cover)
+
             $(this.el).find('.song-description h1').text(name)
             $(this.el).find('.song-description h2').text(' - '+ singer)
             if($(this.el).find('audio').attr('src') !== song.url){
@@ -64,16 +65,23 @@
               transform: `translateY(${- (height - 25)}px)`
             })
             
-          },
-        play(){
-            
-            $(this.el).find('.disc-container').addClass('playing').removeClass('.paused')
+          },          
+        play(){                        
+            $(this.el).find('.disc-container').addClass('playing')           
             $(this.el).find('audio')[0].play()
+            $('.cover').addClass('animation')            
         },
         pause(){
-         
-            $(this.el).find('.disc-container').removeClass('playing').addClass('paused')
+            var container = document.querySelector('.cover-wrapper');
+            var image = container.querySelector('.cover');                  
+            $(this.el).find('.disc-container').removeClass('playing')
             $(this.el).find('audio')[0].pause()
+            let iTransform = getComputedStyle(image).transform;
+            let cTransform = getComputedStyle(container).transform;
+            container.style.transform = cTransform === 'none'
+                ? iTransform
+                : iTransform.concat(' ', cTransform);
+            $('.cover').removeClass('animation')
         }
 
     }
@@ -110,13 +118,14 @@
             this.bindEvents()              
         },
         bindEvents(){
-            $(this.view.el).on('click',()=>{          
+            $(this.view.el).on('click',()=>{
+                //this.model.status==='palying'? this.view.pause():this.view.play()       
                 if(this.model.status ==='playing'){
-                    this.view.pause()
-                    this.model.status = 'paused'                    
+                    this.model.status = 'paused'
+                    this.view.pause()                                       
                 }else{
-                    this.view.play()
                     this.model.status = 'playing'
+                    this.view.play()
                 }                
             })
             window.eventHub.on('songEnd', ()=>{

@@ -5,9 +5,14 @@
 
 a{color: inherit; text-decoration: none;}
 ul,ol{list-style: none;}
-@keyframes circle{
+@keyframes circles{
    0%{transform: rotate(0deg)} 
    100%{transform: rotate(365deg)}
+}
+@keyframes circle{
+    100% {
+           transform: rotate(1turn);
+        }
 }
 
 
@@ -53,15 +58,15 @@ ul,ol{list-style: none;}
     height: 70vw;
     width: 70vw;
     border-radius: 50%;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.1);
     z-index: 1; 
 }
-.disc-container .icon {
+.disc-container .icon-wrapper > .icon-pause{
     width: 20%;
     height: 20%;
     fill: white;
-    
 }
+
 .disc-container .pointer{
     width: 25vw;
     position: absolute;
@@ -86,21 +91,22 @@ ul,ol{list-style: none;}
     position: absolute;
     
 }
+.animation{animation: circle 20s infinite linear;}
+.disc-container .cover-wrapper{
+    width: 50vw;
+    position: absolute;
+   /* animation: circle 20s infinite linear; 
+    animation-play-state: paused;*/
+}
 
 .disc-container .cover{
-    width: 50vw;
+    width: 100%;
   /*  height: 70vw; */
-    position: absolute;
-    border-radius: 50%;  
-    animation: circle 20s infinite linear; 
-    animation-play-state: paused;
+    border-radius: 50%; 
     z-index: -1;
-
 }
 .disc-container.playing .light,
-.disc-container.playing .cover{
-  animation-play-state: running;
-}
+
 
 
 .disc-container.playing .icon-wrapper{display: none; }
