@@ -3,9 +3,13 @@
         el:'.page-3',
         template:`
         <div class="inputcover">
-        <i class="u-svg u-svg-srch"></i>
-        <input type="search" name="search" class="input" placeholder=""value="" autocomplete="off">
-        <label class="holder">搜索歌曲、歌手、专辑</label>
+        <div class="serarch">
+        <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-search"></use>
+        </svg>
+        <input type="search" name="search" class="input" placeholder="搜索歌曲、歌手、专辑" value="" autocomplete="off">
+        </div>
+        <div class="hotlist">热门搜索</div>
         <figure class="close"><i class="u-svg u-svg-empty"></i></figure>
         </div>
         `,

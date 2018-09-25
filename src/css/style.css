@@ -293,3 +293,42 @@ body{
 }
 
 /*page-3*/
+.page-3 .inputcover{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.page-3 .icon{
+       position: absolute;
+       left: 2px;
+       top: 36%;
+       width: 1.5em; height: 1.5em;
+       fill: red;
+       overflow: hidden;
+}
+.page-3 input{
+  
+  height: 35px;
+  width:100%;
+  color: #333;
+  border-radius: 30px;
+  padding: 2px 0;
+  padding-left: 9%;
+  font: 14px Helvetica,sans-serif;;
+  background-color: rgb(238, 237, 237);
+  border: none;
+  outline: none;
+  margin: 20px 0;
+}
+.page-3 input::-webkit-input-placeholder{color:rgb(221, 221, 221);font-size: 14px;}
+.page-3 .serarch{
+  position: relative;
+  width:90%;
+}
+.page-3 .hotlist{
+  width: 100%;
+  padding: 15px 10px 0;
+  border-top: 1px solid #ddd;
+}
