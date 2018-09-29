@@ -19,6 +19,7 @@
                 audio.onended = ()=>{ window.eventHub.emit('songEnd') }
                 audio.ontimeupdate = ()=> { this.showLyric(audio.currentTime) }
             }
+            $(this.el).click()
             //split空格，遍历数组，每行创建p放歌词
             lyrics.split('\n').map((string)=>{
                 let p = document.createElement('p')
