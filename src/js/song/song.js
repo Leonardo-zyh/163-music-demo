@@ -31,7 +31,7 @@
                     let parts = time.split(':')
                     let minutes = parts[0]
                     let seconds = parts[1]
-                    let newTime = parseInt(minutes,10)*60 + parseFloat(seconds,10) - 1
+                    let newTime = parseInt(minutes,10)*60 + parseFloat(seconds,10) - 0.5
                     p.setAttribute('data-time',newTime)
                 }else{
                     p.textContent = string

@@ -46,6 +46,14 @@ ul,ol{list-style: none;}
     filter: blur(10px);
     z-index: -3;
 }
+.page .m-logo svg{
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    display: block;
+    height: 17px;
+    
+}
 
 .disc-container{
     position: relative;
