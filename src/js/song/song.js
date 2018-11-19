@@ -11,6 +11,7 @@
             let {lyrics,name,singer}= song
             $('style').html(this.template.replace('{__cover__}',song.cover))
             $('.cover').attr('src',song.cover)
+            $('.download').attr('href',song.url)
 
             $(this.el).find('.song-description h1').text(name)
             $(this.el).find('.song-description h2').text(' - '+ singer)
@@ -19,7 +20,8 @@
                 audio.onended = ()=>{ window.eventHub.emit('songEnd') }
                 audio.ontimeupdate = ()=> { this.showLyric(audio.currentTime) }
             }
-            $(this.el).click()
+           
+            // $(this.el).click()
             //split空格，遍历数组，每行创建p放歌词
             lyrics.split('\n').map((string)=>{
                 let p = document.createElement('p')
