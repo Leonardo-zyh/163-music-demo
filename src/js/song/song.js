@@ -12,7 +12,7 @@
             $('style').html(this.template.replace('{__cover__}',song.cover))
             $('.cover').attr('src',song.cover)
             $('.download').attr('href',song.url)
-
+            $('title').html(name+'-'+singer)
             $(this.el).find('.song-description h1').text(name)
             $(this.el).find('.song-description h2').text(' - '+ singer)
             if($(this.el).find('audio').attr('src') !== song.url){
