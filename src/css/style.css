@@ -316,6 +316,7 @@ body{
   border-radius: 30px;
   padding: 2px 0;
   padding-left: 9%;
+  padding-right: 4%;
   font: 14px Helvetica,sans-serif;;
   background-color: rgb(238, 237, 237);
   border: none;
@@ -329,6 +330,29 @@ body{
 }
 .page-3 .hotlist{
   width: 100%;
+  padding: 15px 10px 10px;
+  border-top: 1px solid #ddd;
+}
+.page-3 .footer-btn{
+  width: 100%;
   padding: 15px 10px 0;
   border-top: 1px solid #ddd;
+}
+.serarch-song{
+  margin:0 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.serarch-song .red-song{
+
+  margin: 10px 5px;
+  padding: 5px 10px;
+  font-size: 10px;
+  cursor: pointer	;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+.serarch-song .ts{
+  margin: 0px 5px;
+
 }
