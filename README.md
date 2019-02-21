@@ -7,5 +7,5 @@
 
 * 项目博客：https://www.cnblogs.com/gitnull/p/10041183.html
 * 项目预览二维码：
-<img src="./二维码.jpg"></img>
+<img src="./二维码.png"></img>
 
