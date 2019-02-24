@@ -343,8 +343,7 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
-.serarch-song .red-song{
-
+.red-song{
   margin: 10px 5px;
   padding: 5px 10px;
   font-size: 10px;
@@ -352,7 +351,8 @@ body{
   border: 1px solid #ddd;
   border-radius: 20px;
 }
-.serarch-song .ts{
-  margin: 0px 5px;
+
+.ts{
+  margin: 10px 10px;
 
 }

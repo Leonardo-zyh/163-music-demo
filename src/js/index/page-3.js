@@ -12,6 +12,11 @@
         <div class="hotlist">热门搜索</div>
         <figure class="close"><i class="u-svg u-svg-empty"></i></figure>
         </div>
+        <div class="serarch-song">
+              <a href="./song.html?id=5ba32d390b6160006f928cca" class="red-song" >Let Her Go</a>          
+              <a href="./song.html?id=5ba359529f54540036140bd2" class="red-song" >Look What You Made Me Do</a>                              
+            </div>
+            <a href="./playlist" class="red-song ts" >Taylor Swift</a>
         `,
         init() {
             this.$el = $(this.el)
