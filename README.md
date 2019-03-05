@@ -7,7 +7,7 @@
 此项目为移动端适配微信，请用微信扫下面二维码链接。
 
 * 项目博客：https://www.cnblogs.com/gitnull/p/10041183.html
-* 项目预览二维码：
+* 项目预览二维码：https://leonardo-zyh.github.io/163-music-demo/src/index.html
 <br/>
 <img src="./二维码.png"></img>
 
